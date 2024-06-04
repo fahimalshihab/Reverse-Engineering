@@ -5,6 +5,6 @@
 ``` g++ hello.cpp -o  hello.exe ```
 To make .o file and .exe file
 
-[hello.o](/hello.o)
+[hello.o](https://github.com/fahimalshihab/Reverse-Engineering/blob/main/Source%20Code%20to%20exe/hello.o)
 
-[hello.exe](/hello.exe)
+[hello.exe](https://github.com/fahimalshihab/Reverse-Engineering/blob/main/Source%20Code%20to%20exe/hello.exe)
