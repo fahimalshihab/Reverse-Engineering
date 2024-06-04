@@ -1,3 +1,5 @@
+![image](https://github.com/fahimalshihab/Reverse-Engineering/assets/97816146/06160313-93aa-4ab9-8c19-15f992987c26)
+
 ![A-high-level-representation-of-a-typical-Harvardbased-MCU-memory-segments](https://github.com/fahimalshihab/Reverse-Engineering/assets/97816146/f0db7f7f-2452-4fbb-888f-804aeedbadd6)
 ![image](https://github.com/fahimalshihab/Reverse-Engineering/assets/97816146/ca075c9b-d7be-47f7-8432-185a442ae325)
 
