@@ -4,3 +4,7 @@
 
 ``` g++ hello.cpp -o  hello.exe ```
 To make .o file and .exe file
+
+[hello.o](/hello.o)
+
+[hello.exe](/hello.exe)
