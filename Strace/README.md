@@ -2,6 +2,9 @@
 
 *Reverse Engineering Series — Part 1*
 
+<img width="1672" height="941" alt="image" src="https://github.com/user-attachments/assets/267e840e-f831-45b8-ab69-adc4848b36fb" />
+
+
 When you run a Linux program, you normally see only the result.
 
 ```bash
