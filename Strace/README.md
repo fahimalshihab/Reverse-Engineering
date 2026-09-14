@@ -1040,7 +1040,7 @@ we can ask:
 
 It's a different perspective on the same program.
 
-<img width="550" height="362" alt="image" src="https://github.com/user-attachments/assets/5d9c0daa-5515-430c-ad59-8a7f3ffc22f2" />
+<img width="1536" height="1024" alt="image" src="https://github.com/user-attachments/assets/98be312d-ea26-4605-8543-db73f60d6f90" />
 
 
 ## A useful way to think about the entire trace
@@ -1391,36 +1391,9 @@ Done!
 
 After tracing it, we can describe much more:
 
-```text
-                 ./demo
-                    │
-                    ▼
-               execve()
-                    │
-                    ▼
-             Process startup
-                    │
-                    ▼
-           Libraries / memory
-                    │
-                    ▼
-               openat()
-                    │
-                    ▼
-             /tmp/demo.txt
-                    │
-                    ▼
-                write()
-                    │
-                    ▼
-                close()
-                    │
-                    ▼
-             write(stdout)
-                    │
-                    ▼
-             exit_group()
-```
+
+<img width="1148" height="786" alt="image" src="https://github.com/user-attachments/assets/9eaae00e-4483-40af-ba14-af5316a31a2d" />
+
 
 The source code was small.
 
