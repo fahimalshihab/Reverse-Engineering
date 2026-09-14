@@ -78,7 +78,7 @@ In fact, keeping the program small is useful because we can easily compare what 
 
 Create `demo.c`:
 
-<img width="1832" height="946" alt="image" src="https://github.com/user-attachments/assets/cb5b817a-9e1f-48f0-98f0-07f622ca770a" />
+<img width="775" height="457" alt="image" src="https://github.com/user-attachments/assets/b1e3a2c3-fe3d-4ba1-b9fb-02a45f416ed2" />
 
 
 
@@ -106,22 +106,8 @@ Now let's ask a different question:
 
 **What did the operating system actually do while this program was running?**
 
----
+<img width="556" height="353" alt="image" src="https://github.com/user-attachments/assets/0485c057-8c6f-4ef1-8068-57d56c1dd8b5" />
 
-> **SS PLACEHOLDER — Terminal**
->
-> Show:
->
-> ```bash
-> gcc demo.c -o demo
-> ./demo
-> ls -l /tmp/demo.txt
-> cat /tmp/demo.txt
-> ```
->
-> Capture the terminal showing the compiled program, its output, and the created file.
-
----
 
 ## Now bring in `strace`
 
@@ -157,19 +143,8 @@ Don't worry about the huge output.
 
 We are going to read it like a story.
 
----
+<img width="723" height="924" alt="image" src="https://github.com/user-attachments/assets/a2332871-b72d-4ba8-b897-a0f2755eb25d" />
 
-> **SS PLACEHOLDER — Full `strace` Output**
->
-> Capture the terminal running:
->
-> ```bash
-> strace ./demo
-> ```
->
-> Keep the complete output visible if possible. Later screenshots can zoom into individual sections.
-
----
 
 ## What exactly is a system call?
 
@@ -185,24 +160,8 @@ If it needs a kernel-managed resource, it makes a **system call**.
 
 For example:
 
-```text
-                 USER SPACE
+<img width="402" height="542" alt="image" src="https://github.com/user-attachments/assets/27a33944-73d0-41ea-a82e-8481c99ecc41" />
 
-              ./demo
-                 │
-                 │ "Open this file"
-                 ▼
-           System Call
-                 │
-─────────────────┼─────────────────
-                 │
-                 ▼
-              KERNEL
-                 │
-                 │ Filesystem operation
-                 ▼
-              File
-```
 
 The system call is the bridge between the application and the kernel.
 
