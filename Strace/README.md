@@ -63,13 +63,8 @@ And finally:
 
 It doesn't show us every instruction executed by the CPU. Instead, it gives us visibility into an important boundary:
 
-```text
-User Space
-     │
-     │ System Calls
-     ▼
-Kernel Space
-```
+<img width="262" height="332" alt="image" src="https://github.com/user-attachments/assets/a7cbcfc3-0b65-47a9-bcce-679d11725a4c" />
+
 
 That boundary is extremely useful when trying to understand an executable whose source code we don't have.
 
@@ -83,24 +78,9 @@ In fact, keeping the program small is useful because we can easily compare what 
 
 Create `demo.c`:
 
-```c
-#include <stdio.h>
-#include <fcntl.h>
-#include <unistd.h>
+<img width="1832" height="946" alt="image" src="https://github.com/user-attachments/assets/cb5b817a-9e1f-48f0-98f0-07f622ca770a" />
 
-int main(void)
-{
-    int fd = open("/tmp/demo.txt", O_CREAT | O_WRONLY, 0644);
 
-    write(fd, "Hello strace!\n", 14);
-
-    close(fd);
-
-    printf("Done!\n");
-
-    return 0;
-}
-```
 
 Compile it:
 
