@@ -26,36 +26,8 @@ But it isn't invisible to the operating system.
 
 And this is where `strace` becomes interesting.
 
----
+<img width="602" height="602" alt="image" src="https://github.com/user-attachments/assets/2670c389-12ef-444b-96cd-443f34ac7c5a" />
 
-> **VISUAL — Opening Flowchart**
->
-> ```text
->                     Linux Program
->                           │
->                           ▼
->                    System Call Boundary
->                           │
->          ┌────────────────┼────────────────┐
->          ▼                ▼                ▼
->       Files             Memory          Processes
->          │                │                │
->       openat()           mmap()         clone()
->       read()             munmap()       execve()
->       write()                             wait4()
->          │                │                │
->          └────────────────┼────────────────┘
->                           ▼
->                        Kernel
->                           │
->                           ▼
->                        `strace`
->                           │
->                           ▼
->                  Human-readable trace
-> ```
-
----
 
 ## The idea behind `strace`
 
