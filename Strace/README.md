@@ -1297,30 +1297,9 @@ If that calculation happens entirely in user space, there may be no correspondin
 
 So we should visualize `strace` like this:
 
-```text
-┌─────────────────────────────────┐
-│          Linux Program          │
-│                                 │
-│  Functions                      │
-│  Loops                          │
-│  Calculations                   │
-│  Variables                      │
-│  String processing              │
-│                                 │
-└──────────────┬──────────────────┘
-               │
-               │ System Call Boundary
-               ▼
-┌─────────────────────────────────┐
-│         Linux Kernel            │
-│                                 │
-│ Files │ Memory │ Network        │
-│ Process │ Signals │ Devices     │
-└─────────────────────────────────┘
-               │
-               ▼
-             strace
-```
+
+<img width="319" height="492" alt="image" src="https://github.com/user-attachments/assets/6fd58ab8-8e7e-4414-9fe3-dae5ac22f047" />
+
 
 `strace` gives us excellent visibility into the **program-to-kernel interaction**.
 
@@ -1380,33 +1359,8 @@ grep -E 'mmap|mprotect|munmap' trace.txt
 
 We have now moved from simply **running `strace`** to actually **investigating a trace**.
 
----
+<img width="592" height="472" alt="image" src="https://github.com/user-attachments/assets/5e417a48-bd39-42d5-a9ac-d60f84ba6921" />
 
-> **VISUAL — Investigation Workflow**
->
-> ```text
->                    Unknown Binary
->                          │
->                          ▼
->              strace -f -tt -T -s 200
->                          │
->                          ▼
->                     trace.txt
->                          │
->             ┌────────────┼────────────┐
->             ▼            ▼            ▼
->          Files        Processes     Network
->             │            │            │
->          openat()      clone()     socket()
->          read()        execve()    connect()
->          write()       wait4()     send/recv
->             │            │            │
->             └────────────┼────────────┘
->                          ▼
->                   Behavioral Model
-> ```
-
----
 
 ## The important mindset
 
