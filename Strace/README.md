@@ -302,30 +302,8 @@ This is one of the most important habits when reading `strace`:
 
 A single number can connect several apparently unrelated lines.
 
----
+<img width="360" height="552" alt="image" src="https://github.com/user-attachments/assets/fd010621-25d3-446b-811c-e27343645253" />
 
-> **VISUAL — File Descriptor Lifecycle**
->
-> ```text
->              openat()
->                 │
->                 │ returns 3
->                 ▼
->        ┌─────────────────┐
->        │ File Descriptor 3│
->        └────────┬────────┘
->                 │
->          ┌──────┴──────┐
->          ▼             ▼
->       write(3)      read(3)
->          │
->          ▼
->       close(3)
-> ```
->
-> Caption: **A file descriptor is the process's handle to a kernel-managed resource.**
-
----
 
 ## `write()` tells us what happened next
 
@@ -553,29 +531,11 @@ write(1, "Done!\n", 6)
 
 means the process is writing the message to standard output.
 
----
+<img width="360" height="502" alt="image" src="https://github.com/user-attachments/assets/860ac2a5-1a9c-4f3e-a09d-e9e16c152c19" />
 
-> **VISUAL — From `printf()` to the Terminal**
->
-> ```text
->       printf("Done!\n")
->                │
->                ▼
->              libc
->                │
->                ▼
->             write()
->                │
->                ▼
->          Linux Kernel
->                │
->                ▼
->             Terminal
-> ```
->
-> Caption: **The function visible in source code may eventually result in a different syscall visible to `strace`.**
+**The function visible in source code may eventually result in a different syscall visible to `strace`.**
 
----
+
 
 ## The strange calls before our file operation
 
@@ -833,32 +793,10 @@ We can reasonably infer that the program tried several locations until one succe
 
 We didn't need the source code to observe that behavior.
 
----
+<img width="360" height="502" alt="image" src="https://github.com/user-attachments/assets/1da88d9e-bde7-4c31-9f42-442898c9b462" />
 
-> **VISUAL — Configuration Search**
->
-> ```text
->          Program
->             │
->             ▼
->      /etc/app.conf
->             │
->          ENOENT
->             │
->             ▼
->   /usr/local/etc/app.conf
->             │
->          ENOENT
->             │
->             ▼
->       /tmp/app.conf
->             │
->          SUCCESS
-> ```
->
-> Caption: **Failed system calls can reveal decision-making inside a program.**
+ **Failed system calls can reveal decision-making inside a program.**
 
----
 
 ## Let's make the trace easier to read
 
@@ -1065,9 +1003,29 @@ strace -c ./demo
 The result includes information such as:
 
 ```text
-% time     seconds  usecs/call     calls  errors syscall
-------     -------  -----------  --------  ------ --------
-...
+% time     seconds  usecs/call     calls    errors syscall
+------ ----------- ----------- --------- --------- ----------------
+  0.00    0.000000           0         1           read
+  0.00    0.000000           0         2           write
+  0.00    0.000000           0         3           close
+  0.00    0.000000           0         3           fstat
+  0.00    0.000000           0         8           mmap
+  0.00    0.000000           0         3           mprotect
+  0.00    0.000000           0         1           munmap
+  0.00    0.000000           0         3           brk
+  0.00    0.000000           0         2           pread64
+  0.00    0.000000           0         1         1 access
+  0.00    0.000000           0         1           execve
+  0.00    0.000000           0         1           arch_prctl
+  0.00    0.000000           0         1           set_tid_address
+  0.00    0.000000           0         3           openat
+  0.00    0.000000           0         1           set_robust_list
+  0.00    0.000000           0         1           prlimit64
+  0.00    0.000000           0         1           getrandom
+  0.00    0.000000           0         1           rseq
+------ ----------- ----------- --------- --------- ----------------
+100.00    0.000000           0        37         1 total
+
 ```
 
 This provides a summary of syscall activity.
@@ -1082,18 +1040,8 @@ we can ask:
 
 It's a different perspective on the same program.
 
----
+<img width="550" height="362" alt="image" src="https://github.com/user-attachments/assets/5d9c0daa-5515-430c-ad59-8a7f3ffc22f2" />
 
-> **SS PLACEHOLDER — `strace -c`**
->
-> Capture the complete statistics output and annotate:
->
-> `calls` → number of calls
-> `errors` → failed calls
-> `syscall` → syscall name
-> `% time` → relative time spent
-
----
 
 ## A useful way to think about the entire trace
 
