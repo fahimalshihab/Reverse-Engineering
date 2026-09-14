@@ -1101,27 +1101,10 @@ printf("Done!\n");
 
 But the runtime behavior involves several layers:
 
-```text
-                   Source Code
-                       │
-                       ▼
-                  C Library
-                       │
-                       ▼
-                System Calls
-                       │
-        ┌──────────────┼──────────────┐
-        ▼              ▼              ▼
-     Files          Memory         Process
-        │              │              │
-     openat()         mmap()         execve()
-     write()          munmap()       exit_group()
-     close()
-        │
-        └──────────────┬──────────────┘
-                       ▼
-                  Linux Kernel
-```
+
+<img width="592" height="512" alt="image" src="https://github.com/user-attachments/assets/b72a428b-028a-4258-ba15-94b161831591" />
+
+
 
 This is why `strace` is so useful.
 
